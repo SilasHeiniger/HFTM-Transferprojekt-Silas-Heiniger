@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         body {
             padding-top: 20px;
@@ -44,26 +43,10 @@
             </div>
         </div>
 
-        <!-- Search Box -->
-        <div class="row mb-4">
-            <div class="col-md-8">
-                <div class="input-group">
-                    <span class="input-group-text bg-white">
-                        <i class="bi bi-search"></i>
-                    </span>
-                    <input type="text" class="form-control" id="searchBox" placeholder="Search entries by name, username, or website...">
-                    <button class="btn btn-outline-secondary" type="button" id="clearSearch" title="Clear search">
-                        <i class="bi bi-x-circle"></i>
-                    </button>
-                </div>
-                <small class="text-muted" id="searchResults"></small>
-            </div>
-        </div>
-
         {% if entries %}
-            <div class="row" id="entriesContainer">
+            <div class="row">
                 {% for entry in entries %}
-                <div class="col-md-6 col-lg-4 entry-wrapper">
+                <div class="col-md-6 col-lg-4">
                     <div class="card entry-card">
                         <div class="card-body">
                             <h5 class="card-title">{{ entry.name }}</h5>
@@ -126,65 +109,5 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Search functionality
-        const searchBox = document.getElementById('searchBox');
-        const clearSearch = document.getElementById('clearSearch');
-        const searchResults = document.getElementById('searchResults');
-        const entryWrappers = document.querySelectorAll('.entry-wrapper');
-        
-        function performSearch() {
-            const searchTerm = searchBox.value.toLowerCase().trim();
-            let visibleCount = 0;
-            
-            entryWrappers.forEach(wrapper => {
-                const card = wrapper.querySelector('.entry-card');
-                const name = card.querySelector('.card-title')?.textContent.toLowerCase() || '';
-                const cardBody = card.textContent.toLowerCase();
-                
-                if (searchTerm === '' || 
-                    name.includes(searchTerm) || 
-                    cardBody.includes(searchTerm)) {
-                    wrapper.style.display = '';
-                    visibleCount++;
-                } else {
-                    wrapper.style.display = 'none';
-                }
-            });
-            
-            // Update search results text
-            if (searchTerm === '') {
-                searchResults.textContent = '';
-            } else {
-                searchResults.textContent = `Found ${visibleCount} of ${entryWrappers.length} entries`;
-            }
-        }
-        
-        // Search as user types
-        searchBox.addEventListener('input', performSearch);
-        
-        // Clear search button
-        clearSearch.addEventListener('click', function() {
-            searchBox.value = '';
-            performSearch();
-            searchBox.focus();
-        });
-        
-        // Allow Enter key to search
-        searchBox.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                performSearch();
-            }
-        });
-        
-        // Focus search box with Ctrl+F or Cmd+F
-        document.addEventListener('keydown', function(e) {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
-                e.preventDefault();
-                searchBox.focus();
-            }
-        });
-    </script>
 </body>
 </html>

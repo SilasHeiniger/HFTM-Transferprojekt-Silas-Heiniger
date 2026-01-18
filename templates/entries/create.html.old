@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
@@ -32,17 +31,9 @@
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="password" name="password" 
-                                           placeholder="Enter password">
-                                    <button class="btn btn-outline-secondary" type="button" id="generatePassword" title="Generate secure password">
-                                        <i class="bi bi-key-fill"></i> Generate
-                                    </button>
-                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword" title="Show/hide password">
-                                        <i class="bi bi-eye-fill" id="toggleIcon"></i>
-                                    </button>
-                                </div>
-                                <small class="text-muted d-block mt-1">⚠️ Warning: Password will be stored in plain text (encryption not yet implemented)</small>
+                                <input type="password" class="form-control" id="password" name="password" 
+                                       placeholder="Enter password">
+                                <small class="text-muted">⚠️ Warning: Password will be stored in plain text (encryption not yet implemented)</small>
                             </div>
 
                             <div class="mb-3">
@@ -79,56 +70,5 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Password generator function
-        function generatePassword(length = 16) {
-            const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const lowercase = 'abcdefghijklmnopqrstuvwxyz';
-            const numbers = '0123456789';
-            const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
-            
-            const allChars = uppercase + lowercase + numbers + symbols;
-            let password = '';
-            
-            // Ensure at least one character from each category
-            password += uppercase[Math.floor(Math.random() * uppercase.length)];
-            password += lowercase[Math.floor(Math.random() * lowercase.length)];
-            password += numbers[Math.floor(Math.random() * numbers.length)];
-            password += symbols[Math.floor(Math.random() * symbols.length)];
-            
-            // Fill the rest randomly
-            for (let i = password.length; i < length; i++) {
-                password += allChars[Math.floor(Math.random() * allChars.length)];
-            }
-            
-            // Shuffle the password
-            return password.split('').sort(() => Math.random() - 0.5).join('');
-        }
-        
-        // Generate password button handler
-        document.getElementById('generatePassword').addEventListener('click', function() {
-            const passwordField = document.getElementById('password');
-            passwordField.value = generatePassword(16);
-            passwordField.type = 'text'; // Show generated password
-            document.getElementById('toggleIcon').classList.remove('bi-eye-fill');
-            document.getElementById('toggleIcon').classList.add('bi-eye-slash-fill');
-        });
-        
-        // Toggle password visibility
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const passwordField = document.getElementById('password');
-            const icon = document.getElementById('toggleIcon');
-            
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                icon.classList.remove('bi-eye-fill');
-                icon.classList.add('bi-eye-slash-fill');
-            } else {
-                passwordField.type = 'password';
-                icon.classList.remove('bi-eye-slash-fill');
-                icon.classList.add('bi-eye-fill');
-            }
-        });
-    </script>
 </body>
 </html>

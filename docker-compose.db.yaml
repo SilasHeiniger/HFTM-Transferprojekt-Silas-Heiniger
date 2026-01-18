@@ -4,9 +4,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=transferdemo
-      - POSTGRES_PASSWORD=transferdemo
-      - POSTGRES_DB=transferdemo
+      - POSTGRES_USER=passwordmanager
+      - POSTGRES_PASSWORD=passwordmanager
+      - POSTGRES_DB=passwordmanager
     volumes:
       - pgdata:/var/lib/postgresql/data
 

@@ -1,6 +1,6 @@
 # Password Manager
 
-Simple password manager with search and password generation.
+Simple password manager with search and password generation built with FastAPI.
 
 ## Requirements
 
@@ -21,7 +21,7 @@ Simple password manager with search and password generation.
    start.bat
    ```
 
-4. **Open in browser:** http://localhost:5000
+4. **Open in browser:** http://localhost:8000
 
 ## What the installer does:
 
@@ -52,14 +52,6 @@ uv run python -m app.main
 
 - **Application:** Press `Ctrl+C`
 - **Database:** `docker-compose -f docker-compose.db.yaml down`
-
-## Features
-
-- ✅ Create/Edit/Delete password entries
-- ✅ Organize with folders
-- ✅ Search entries
-- ✅ Password generator
-- ⚠️ Passwords stored in plain text (encryption not implemented)
 
 ## Security Warning
 
